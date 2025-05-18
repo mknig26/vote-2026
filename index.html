@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Presidential Voting Login First</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Thank You Banner -->
+  <div class="thank-you-banner" id="thankYou">
+    ✅ THANK YOU FOR VOTED FOR THE PRESIDENT OF HASAN SHEIKH MAHAMUUD
+  </div>
+
+  <!-- Login Form -->
+  <div class="form-box" id="loginForm">
+    <form>
+      <img src="https://t4.ftcdn.net/jpg/00/65/77/27/360_F_65772719_A1UV5kLi5nCEWI0BNLLiFaBPEkUbv5Fv.jpg" alt="Login Icon">
+      <h2>Login to Continue</h2>
+      <input type="text" id="username" placeholder="Username" required>
+      <input type="password" id="password" placeholder="Password" required>
+      <label><input type="checkbox" onclick="togglePassword()"> Show Password</label>
+      <button type="button" onclick="login()">Login</button>
+      <div class="error-message" id="errorMessage"></div>
+    </form>
+  </div>
+
+  <!-- Navigation -->
+  <nav>
+    <img src="https://www.miphealth.org.uk/wp-content/uploads/Upload/News_2019-12-04_vote_logo.png" alt="Logo" class="logo" />
+    <div class="title">Presidential Voting</div>
+  </nav>
+
+  <!-- Voting Section -->
+  <section id="home">
+    <h1>Vote for Your President</h1>
+    <h2>Here are the presidents we have</h2>
+
+    <div class="candidates">
+      <div class="candidate">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVUIfRyc2h7nM8LLITskjkJo6pZ0UP0U4_0A&s" alt="Hassan Sheikh">
+        <div class="candidate-name">1. Hassan Sheikh Mahamud</div>
+        <button class="vote-btn" onclick="vote(this)">Vote</button>
+      </div>
+      <div class="candidate">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/His_Excellency_President_Mohamed_Abdullahi_Mohamed_Farmaajo.jpg" alt="Mohamed Farmaajo">
+        <div class="candidate-name">2. Mohamed Abdullahi Farmaajo</div>
+        <button class="vote-btn" onclick="vote(this)">Vote</button>
+      </div>
+      <div class="candidate">
+        <img src="https://pbs.twimg.com/profile_images/1254239176746323968/qUmxXvm-_400x400.jpg" alt="Sharif Ahmed">
+        <div class="candidate-name">3. Sharif Sheikh Ahmed</div>
+        <button class="vote-btn" onclick="vote(this)">Vote</button>
+      </div>
+      <div class="candidate">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7dz1vbF2tyfyCbyNv_XO-wGnPQhT3sIwabQ&s" alt="Abdirashid Abdishakur">
+        <div class="candidate-name">4. Abdirashid Abdishakur</div>
+        <button class="vote-btn" onclick="vote(this)">Vote</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- JavaScript -->
+  <script>
+    function login() {
+      const user = document.getElementById('username').value.trim();
+      const pass = document.getElementById('password').value.trim();
+      const error = document.getElementById('errorMessage');
+
+      if (user === "" || pass === "") {
+        error.innerText = "❌ PLEASE ENTER BOTH FIELDS";
+        return;
+      }
+
+      if (user === "mking26" && pass === "Rashiid2018") {
+        error.innerText = "";
+        document.getElementById('loginForm').classList.add('slide-out');
+        setTimeout(() => {
+          document.getElementById('loginForm').style.display = "none";
+          document.getElementById('home').classList.add('active');
+        }, 600);
+      } else {
+        error.innerText = "❌ PLEASE CHECK THE USERNAME AND PASSWORD";
+      }
+    }
+
+    function togglePassword() {
+      const passwordField = document.getElementById("password");
+      passwordField.type = passwordField.type === "password" ? "text" : "password";
+    }
+
+    function vote(button) {
+      if (!button.classList.contains('voted')) {
+        button.innerText = "Voted";
+        button.classList.add("voted");
+        document.getElementById("thankYou").style.display = "block";
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+  </script>
+</body>
+</html>
